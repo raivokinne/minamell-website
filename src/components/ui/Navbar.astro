@@ -1,25 +1,63 @@
-<nav class="flex justify-center items-center h-[80px] w-full">
-    <div class="container flex justify-between items-center mx-[150px]">
-        <div class="text-3xl font-bold">
-            <a href="/">Minamell</a>
-        </div>
-
-        <ul class="flex gap-4">
-            <li><a href="/">Home</a></li>
-            <li><a href="/docs">Docs</a></li>
-            <li><a href="/examples">Examples</a></li>
-            <li><a href="https://github.com/raivokinne/minamell" target="_blank">GitHub</a></li>
-            <li><a href="/about">About</a></li>
-        </ul>
-
-        <label for="search">
-            <input
-                type="search"
-                name="search"
-                id="search"
-                placeholder="Search..."
-                class="bg-gray-50 border-2 border-black text-black text-sm rounded-full focus:ring-blue-500 focus:border-blue-500 block w-[200px] p-1 px-2"
-            >
-        </label>
+<nav class="flex justify-center items-center absolute top-0 h-[80px] w-full">
+  <div class="container flex justify-between items-center mx-[150px]">
+    <div class="text-3xl font-bold">
+      <a href="/">Minamell</a>
     </div>
+
+    <ul class="flex gap-4">
+      <li><a href="/">Home</a></li>
+      <li><a href="/docs">Docs</a></li>
+      <li><a href="/examples">Examples</a></li>
+      <li>
+        <a href="https://github.com/raivokinne/minamell" target="_blank"
+          >GitHub</a
+        >
+      </li>
+      <li><a href="/about">About</a></li>
+    </ul>
+
+    <div class="flex justify-center items-center gap-4">
+      <label for="search">
+        <input
+          type="search"
+          name="search"
+          id="search"
+          placeholder="Search..."
+          class="bg-gray-50 border-2 border-black text-black text-sm rounded-full focus:ring-blue-500 focus:border-blue-500 block w-[200px] p-1 px-2"
+        />
+      </label>
+      <button id="theme-toggle">
+        <img src="/night-mode.png" alt="" class="w-10" id="theme-image" />
+      </button>
+    </div>
+  </div>
 </nav>
+
+<script>
+  const themeToggle = document.getElementById("theme-toggle");
+  const themeImage = document.getElementById("theme-image") as HTMLImageElement;
+
+  if (themeToggle) {
+    themeToggle.addEventListener("click", () => {
+      const theme = localStorage.getItem("theme");
+
+      if (theme === "dark") {
+        localStorage.setItem("theme", "light");
+        document.body.classList.add("bg-black");
+        document.body.classList.add("text-white");
+        if (themeImage) {
+          themeImage.src = "/day-mode.png";
+        }
+      } else if (theme === "light") {
+        localStorage.setItem("theme", "dark");
+        document.body.classList.remove("bg-black");
+        document.body.classList.remove("text-white");
+        if (themeImage) {
+          themeImage.src = "/night-mode.png";
+        }
+      }
+    });
+  } else {
+    console.error("Theme toggle button not found!");
+  }
+</script>
