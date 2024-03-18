@@ -33,9 +33,11 @@
   </div>
 </nav>
 
-<script defer is:inline>
+<script is:inline>
   const themeToggle = document.getElementById("theme-toggle");
   const themeImage = document.getElementById("theme-image");
+
+  localStorage.setItem("theme", "light");
 
   if (themeToggle) {
     themeToggle.addEventListener("click", () => {
